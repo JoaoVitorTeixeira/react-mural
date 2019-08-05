@@ -1,13 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import Header from './src/Header'
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.textHeader}>M.U.R.A.L</Text>
-        </View>
+        <Header />
         <View style={styles.body}>
           <Text>oiii</Text>
         </View>
@@ -23,17 +22,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
   },
-  header: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#6495ED',
-  },
-  textHeader: {
-    textAlign: 'right',
-    fontSize: 30,
-    marginTop: 40,
-    color: 'white'
-  },  
   body: {
     flex: 5,
     backgroundColor: '#344955',
