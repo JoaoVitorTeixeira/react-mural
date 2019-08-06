@@ -1,20 +1,38 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import {AppLoading} from 'expo'
+import { AppLoading } from 'expo'
 import HeaderMural from './src/HeaderMural'
 import * as Font from 'expo-font'
-
+import {database} from './firebase'
 export default class App extends React.Component {
-  state ={
-    isLoadingComplete: false
+  constructor(props) {
+    super(props)
+    this.state = {
+      isLoadingComplete: false,
+      cards: {},
+      isLoadingCards: false,
+    }
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
+    this.setState({
+      isLoadingCards: true
+    })
+
+    this.setState({ isLoadingCards: true })
+    this.cards = database.ref('cards')
+    this.cards.on('value', snapshot => {
+      this.setState({
+        cards: snapshot.val(),
+        isLoadingCards: false
+      })
+    })
+
     await Font.loadAsync({
       Roboto: require('./node_modules/native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('./node_modules/native-base/Fonts/Roboto_medium.ttf')
     }).then(() => {
-      this.setState({isLoadingComplete: true})
+      this.setState({ isLoadingComplete: true })
     })
   }
 
@@ -24,7 +42,7 @@ export default class App extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <HeaderMural style={styles.header}/>
+        <HeaderMural isLoadingCards={this.state.isLoadingCards} cards={this.state.cards}/>
       </View>
     );
   }

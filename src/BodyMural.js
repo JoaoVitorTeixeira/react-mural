@@ -2,14 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import Card from './Card'
 
-class BodyMural extends React.Component {
-    render() {
-        return (
-            <ScrollView style={styles.color}>
-                <Card></Card>
-            </ScrollView>
-        )
-    }
+const BodyMural = ({ cards, isLoadingCards }) => {
+  return (
+    <ScrollView style={styles.color}>
+
+      {!isLoadingCards && Object.keys(cards).map(key => <Card key={key} />)}
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({

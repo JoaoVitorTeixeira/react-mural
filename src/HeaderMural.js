@@ -12,14 +12,14 @@ class HeaderMural extends React.Component {
             <MaterialIcons name='add' size={25}/>
           </Left>
           <Body>
-            <Title>M.U.R.AL</Title>
+            <Title>M.U.R.A.L</Title>
           </Body>
           <Right>
             <MaterialIcons name='exit-to-app' size={25}/>
           </Right>
         </Header>
 
-        <BodyMural />
+        <BodyMural isLoadingCards={this.props.isLoadingCards} cards={this.props.cards}/>
       </Container>
     )
   }
