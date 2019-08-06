@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import { Card, CardItem, Text, Body } from "native-base"
 
 const CardMural = ({ title, content }) => {

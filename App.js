@@ -2,8 +2,10 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { AppLoading } from 'expo'
 import HeaderMural from './src/HeaderMural'
+import BodyMural from './src/BodyMural'
 import * as Font from 'expo-font'
 import {database} from './firebase'
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -42,7 +44,8 @@ export default class App extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <HeaderMural isLoadingCards={this.state.isLoadingCards} cards={this.state.cards}/>
+        <HeaderMural />
+        <BodyMural isLoadingCards={this.state.isLoadingCards} cards={this.state.cards}/>
       </View>
     );
   }
