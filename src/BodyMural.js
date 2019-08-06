@@ -1,12 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
-import Card from './Card'
+import { StyleSheet, ScrollView } from 'react-native'
+import CardMural from './CardMural'
 
 const BodyMural = ({ cards, isLoadingCards }) => {
   return (
     <ScrollView style={styles.color}>
 
-      {!isLoadingCards && Object.keys(cards).map(key => <Card key={key} />)}
+      {!isLoadingCards && Object.keys(cards).map(key => <CardMural key={key}
+        title={cards[key].title} content={cards[key].content} />)}
     </ScrollView>
   )
 }
