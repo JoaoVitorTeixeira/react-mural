@@ -1,10 +1,12 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { AppLoading } from 'expo'
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
 import HeaderMural from './src/HeaderMural'
 import BodyMural from './src/BodyMural'
 import * as Font from 'expo-font'
-import {database} from './firebase'
+import { database } from './firebase'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,6 +38,14 @@ export default class App extends React.Component {
     }).then(() => {
       this.setState({ isLoadingComplete: true })
     })
+
+    YellowBox.ignoreWarnings(['Setting a timer']);
+    const _console = _.clone(console);
+    console.warn = message => {
+      if (message.indexOf('Setting a timer') <= -1) {
+        _console.warn(message);
+      }
+    };
   }
 
   render() {
@@ -45,7 +55,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <HeaderMural />
-        <BodyMural isLoadingCards={this.state.isLoadingCards} cards={this.state.cards}/>
+        <BodyMural isLoadingCards={this.state.isLoadingCards} cards={this.state.cards} />
       </View>
     );
   }
