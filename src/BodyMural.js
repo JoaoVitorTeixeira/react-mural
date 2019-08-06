@@ -7,12 +7,15 @@ import { AppLoading } from 'expo'
 class BodyMural extends React.Component {
   render() {
     const { cards } = this.props
+    const keys = Object.keys(cards)
+
     return (
       <SwipeListView style={styles.color}
-        data={Object.keys(cards)}
-        renderItem={(data, rowMap) =>
-          <CardMural title={cards[data.item].title} content={cards[data.item].content} />
+        data={keys}
+        renderItem={(cardKey, rowMap) =>
+          <CardMural keys={cardKey} title={cards[cardKey.item].title} content={cards[cardKey.item].content} />
         }
+        keyExtractor={(card, key) => key.toString()}
         renderHiddenItem={(data, rowMap) => (
           <View>
             <Text>Left</Text>
