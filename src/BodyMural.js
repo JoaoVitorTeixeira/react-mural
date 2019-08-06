@@ -1,15 +1,30 @@
 import React from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
 import CardMural from './CardMural'
+import { StyleSheet, View, Text } from 'react-native'
+import { SwipeListView } from 'react-native-swipe-list-view'
+import { AppLoading } from 'expo'
 
-const BodyMural = ({ cards, isLoadingCards }) => {
-  return (
-    <ScrollView style={styles.color}>
+class BodyMural extends React.Component {
+  render() {
+    const { cards } = this.props
+    return (
+      <SwipeListView style={styles.color}
+        data={Object.keys(cards)}
+        renderItem={(data, rowMap) =>
+          <CardMural title={cards[data.item].title} content={cards[data.item].content} />
+        }
+        renderHiddenItem={(data, rowMap) => (
+          <View>
+            <Text>Left</Text>
+            <Text>Right</Text>
+          </View>
+        )}
 
-      {!isLoadingCards && Object.keys(cards).map(key => <CardMural key={key}
-        title={cards[key].title} content={cards[key].content} />)}
-    </ScrollView>
-  )
+        leftOpenValue={75}
+        rightOpenValue={-75}
+      />
+    )
+  }
 }
 
 const styles = StyleSheet.create({

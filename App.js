@@ -49,13 +49,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (!this.state.isLoadingComplete) {
+    if (!this.state.isLoadingComplete && !this.isLoadingCards) {
       return <AppLoading />
     }
     return (
       <View style={styles.container}>
         <HeaderMural />
-        <BodyMural isLoadingCards={this.state.isLoadingCards} cards={this.state.cards} />
+        <BodyMural cards={this.state.cards} />
       </View>
     );
   }
