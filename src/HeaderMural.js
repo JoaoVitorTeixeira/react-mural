@@ -9,7 +9,7 @@ class HeaderMural extends React.Component {
     return (
       <Header>
         <Left>
-          <Button onPress={() => createCard({title:'opa', content:'hi'})}>
+          <Button onPress={() => createCard({title:'opa', content:'hi'})} transparent>
             <MaterialIcons name='add' size={25} />
           </Button>
         </Left>

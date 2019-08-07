@@ -1,6 +1,8 @@
 import React from 'react'
 import CardMural from './CardMural'
-import { StyleSheet, View, Button } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { Button } from 'native-base'
+import { MaterialIcons } from '@expo/vector-icons'
 import { SwipeListView } from 'react-native-swipe-list-view'
 
 class BodyMural extends React.Component {
@@ -18,20 +20,19 @@ class BodyMural extends React.Component {
       return (
         <SwipeListView style={styles.color}
           data={keys}
-          renderItem={(cardKey, rowMap) =>
+          renderItem={(cardKey) =>
             <CardMural keys={cardKey} title={cards[cardKey.item].title} content={cards[cardKey.item].content} />
           }
           keyExtractor={(card, key) => key.toString()}
           renderHiddenItem={(data, rowMap) => (
             <View style={styles.rowBack}>
-              <Button
-                title='Remover'
-                onPress={() => deleteCard(data.item)}
-              />
-              <Button
-                title='Editar'
-                onPress={() => console.log(data)}
-              />
+              <Button onPress={() => deleteCard(data.item)} transparent>
+                <MaterialIcons name='delete' size={25} color='white' />
+              </Button>
+              
+              <Button onPress={() => console.log(data)} transparent>
+                <MaterialIcons name='edit' size={25} color='white' />
+              </Button>
             </View>
           )}
 
@@ -64,8 +65,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingLeft: 15
-  }
+    paddingLeft: 15,
+    paddingRight: 15
+  },
 })
 
 export default BodyMural
