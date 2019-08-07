@@ -29,7 +29,7 @@ class BodyMural extends React.Component {
               <Button onPress={() => deleteCard(data.item)} transparent>
                 <MaterialIcons name='delete' size={25} color='white' />
               </Button>
-              
+
               <Button onPress={() => console.log(data)} transparent>
                 <MaterialIcons name='edit' size={25} color='white' />
               </Button>

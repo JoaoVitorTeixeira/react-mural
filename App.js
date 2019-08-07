@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { AppLoading } from 'expo'
 import { YellowBox } from 'react-native';
 import _ from 'lodash';
@@ -72,7 +72,7 @@ export default class App extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <HeaderMural createCard={this.createCard}/>
+        <HeaderMural createCard={this.createCard} />
         <BodyMural cards={this.state.cards} deleteCard={this.deleteCard} />
       </View>
     );
