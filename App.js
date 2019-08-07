@@ -18,6 +18,7 @@ export default class App extends React.Component {
     }
 
     this.deleteCard = this.deleteCard.bind(this)
+    this.createCard = this.createCard.bind(this)
   }
 
   async componentDidMount() {
@@ -54,13 +55,24 @@ export default class App extends React.Component {
     database.ref('cards').child(index).remove()
   }
 
+  createCard(card) {
+    const id = database.ref().child('cards').push().key
+    const cards = {}
+    cards['cards/' + id] = {
+      title: card.title,
+      content: card.content
+    }
+
+    database.ref().update(cards)
+  }
+
   render() {
     if (!this.state.isLoadingComplete && !this.isLoadingCards) {
       return <AppLoading />
     }
     return (
       <View style={styles.container}>
-        <HeaderMural />
+        <HeaderMural createCard={this.createCard}/>
         <BodyMural cards={this.state.cards} deleteCard={this.deleteCard} />
       </View>
     );
