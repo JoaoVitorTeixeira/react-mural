@@ -16,6 +16,8 @@ export default class App extends React.Component {
       cards: {},
       isLoadingCards: false,
     }
+
+    this.deleteCard = this.deleteCard.bind(this)
   }
 
   async componentDidMount() {
@@ -48,6 +50,10 @@ export default class App extends React.Component {
     };
   }
 
+  deleteCard(index) {
+    database.ref('cards').child(index).remove()
+  }
+
   render() {
     if (!this.state.isLoadingComplete && !this.isLoadingCards) {
       return <AppLoading />
@@ -55,7 +61,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <HeaderMural />
-        <BodyMural cards={this.state.cards} />
+        <BodyMural cards={this.state.cards} deleteCard={this.deleteCard} />
       </View>
     );
   }

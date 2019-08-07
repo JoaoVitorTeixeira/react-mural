@@ -1,10 +1,14 @@
 import React from 'react'
 import CardMural from './CardMural'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, View, Button } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
-import { AppLoading } from 'expo'
 
 class BodyMural extends React.Component {
+
+  state = {
+    newComment: ''
+  }
+
   render() {
     const { cards } = this.props
     const keys = Object.keys(cards)
@@ -17,9 +21,20 @@ class BodyMural extends React.Component {
         }
         keyExtractor={(card, key) => key.toString()}
         renderHiddenItem={(data, rowMap) => (
-          <View>
-            <Text>Left</Text>
-            <Text>Right</Text>
+          <View style={styles.rowBack}>
+            <Button
+              title='Remover'
+              icon='edit'
+              onPress={() => this.props.deleteCard(data.item)}
+            />
+            <Button
+              title='Editar'
+              style={{
+                backgroundColor: 'red',
+                color: 'white'
+              }}
+              onPress={() => console.log(data)}
+            />
           </View>
         )}
 
@@ -33,6 +48,13 @@ class BodyMural extends React.Component {
 const styles = StyleSheet.create({
   color: {
     backgroundColor: '#344955',
+  },
+  rowBack: {
+    alignItems: "center",
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: 15
   }
 })
 
